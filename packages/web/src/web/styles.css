@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #050914;
+  --color-ink-2: #07142a;
+  --color-surface: #0a1b33;
+  --color-accent: #1762ff;
+  --color-accent-soft: #4da3ff;
+  --color-paper: #f2f4f7;
+  --color-muted: #8c8f98;
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer theme {
+  :root {
+    --hair: rgba(242, 244, 247, 0.09);
+    --hair-strong: rgba(242, 244, 247, 0.18);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--hair);
+  }
+
+  html {
+    /* Never enable smooth scrolling — it fights the scrub engine. */
+    scroll-behavior: auto;
+    background-color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-soft);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Escala tipografica fechada (padrao inco.vc): sete degraus, nada mais.
+     Hierarquia por peso e espacamento, nunca por tamanho bruto.
+     Proibido text-[...] arbitrario em secoes. */
+
+  .label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .label-xs {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-weight: 700;
+    letter-spacing: -0.032em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .d1 {
+    font-size: clamp(1.95rem, 4vw, 3.5rem);
+  }
+
+  .d2 {
+    font-size: clamp(1.7rem, 3.2vw, 2.75rem);
+  }
+
+  .d3 {
+    font-size: clamp(1.3rem, 2.1vw, 1.85rem);
+  }
+
+  .d4 {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  }
+
+  .lead {
+    font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  .body-txt {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  .hairline {
+    height: 1px;
+    width: 100%;
+    background: var(--hair);
+  }
+
+  /* Section reveal — driven by IntersectionObserver adding .is-visible */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-img {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.1s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-img.is-visible,
+  .is-visible .reveal-img {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Horizontal counterpart — grows left → right. */
+  .reveal-bar {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-bar.is-visible,
+  .is-visible .reveal-bar {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Architectural line drawing. Paths must declare pathLength="1". */
+  .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.5s var(--ease-out-expo);
+    transition-delay: var(--draw-delay, 0ms);
+  }
+
+  .is-visible .draw,
+  .draw.is-visible,
+  [data-active="true"] .draw {
+    stroke-dashoffset: 0;
+  }
+
+  /* Soft fade-in for SVG fills layered on top of a drawn outline. */
+  .fade-layer {
+    opacity: 0;
+    transition: opacity 1s var(--ease-out-expo);
+    transition-delay: var(--draw-delay, 0ms);
+  }
+
+  .is-visible .fade-layer,
+  [data-active="true"] .fade-layer {
+    opacity: 1;
+  }
+
+  /* Two-phase morph: blueprint dissolves into the 3D model in place. */
+  .morph-a {
+    opacity: 1;
+    transition: opacity 1s var(--ease-out-expo) 1.9s;
+  }
+
+  .is-visible .morph-a {
+    opacity: 0;
+  }
+
+  .morph-b {
+    opacity: 0;
+    transition: opacity 1s var(--ease-out-expo) 2.05s;
+  }
+
+  .is-visible .morph-b {
+    opacity: 1;
+  }
+
+  /* Secondary copy that surfaces on hover — always visible on touch. */
+  .hover-reveal {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.8s var(--ease-out-expo),
+      transform 0.8s var(--ease-out-expo);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hover-reveal {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .group:hover .hover-reveal,
+    .group:focus-within .hover-reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Editorial wipe used by the audience scenes and stage swaps. */
+  .wipe {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .wipe.is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Very slow cinematic drift — never a bounce, never a hard zoom. */
+@keyframes imovi-drift {
+  from {
+    transform: scale(1.04) translate3d(-0.6%, 0.4%, 0);
+  }
+  to {
+    transform: scale(1.11) translate3d(0.6%, -0.6%, 0);
+  }
+}
+
+.drift {
+  animation: imovi-drift 22s var(--ease-out-expo) infinite alternate;
+  will-change: transform;
+}
+
+@keyframes imovi-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.flow {
+  stroke-dasharray: 3 9;
+  animation: imovi-dash 1.9s linear infinite;
+}
+
+@keyframes imovi-sweep {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(210%);
+  }
+}
+
+.sweep {
+  animation: imovi-sweep 4.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-img,
+  .reveal-bar,
+  .wipe,
+  .draw,
+  .fade-layer,
+  .morph-a,
+  .morph-b {
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+    clip-path: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+
+  .drift,
+  .flow,
+  .sweep {
+    animation: none !important;
+  }
+
+  /* Show only the resolved 3D state instead of stacking both phases. */
+  .morph-a {
+    opacity: 0 !important;
+  }
+}
+
+/* Hide scrollbars on the horizontal showcase rail without disabling scrolling */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
