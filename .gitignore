@@ -68,7 +68,11 @@ ios
 android
 
 # scripts (local-only provisioning)
-scripts/
+# Exceção: keep-allintra.ts precisa viajar com o repositório. Sem ele o build
+# de produção recomprime o hero em CRF 28, mata o all-intra e o scrub morre —
+# silenciosamente, sem nada no log.
+scripts/*
+!scripts/keep-allintra.ts
 !packages/mobile/scripts/
 packages/mobile/scripts/*
 !packages/mobile/scripts/generate-ios-certs.py
