@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 import { BlueprintPlan } from "../visuals/arch";
 
 const CHAIN = ["Visão", "Experiência", "Negócio"] as const;
@@ -8,7 +9,7 @@ export function Editorial() {
   const outroRef = useReveal<HTMLDivElement>(140);
 
   return (
-    <section className="relative overflow-hidden py-28 sm:py-36 lg:py-48" style={{ backgroundColor: "#030610" }}>
+    <section id="editorial" className="relative overflow-hidden py-28 sm:py-36 lg:py-48" style={{ backgroundColor: "#030610" }}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[900px] -translate-x-1/2"
@@ -17,9 +18,7 @@ export function Editorial() {
 
       {/* ---------------- statement ---------------- */}
       <div ref={headRef} className="reveal relative mx-auto max-w-[1400px] px-6 text-center sm:px-10 lg:px-16">
-        <p className="label" data-reveal>
-          O que está realmente em jogo
-        </p>
+        <SheetLabel code="A-04">O que está realmente em jogo</SheetLabel>
         <h2
           className="display d1 mx-auto mt-8 max-w-[18ch] uppercase text-paper"
           data-reveal

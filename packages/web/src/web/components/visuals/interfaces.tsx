@@ -23,7 +23,7 @@ export function DeviceStack({ className = "" }: { className?: string }) {
         <path className="draw" pathLength="1" style={delay(0)} d="M36 34h332v206H36z" />
         <path className="draw" pathLength="1" style={delay(140)} d="M18 252h368l-14 20H32z" />
       </g>
-      <rect x="36" y="34" width="332" height="206" className="fade-layer" fill="#050E1C" style={delay(120)} />
+      <rect x="36" y="34" width="332" height="206" className="fade-layer" fill="#0A263A" style={delay(120)} />
       <rect x="18" y="252" width="368" height="2" className="fade-layer" fill="currentColor" opacity="0.18" style={delay(160)} />
 
       {/* browser chrome + site nav */}
@@ -45,8 +45,8 @@ export function DeviceStack({ className = "" }: { className?: string }) {
           <text x="232" y="60">PLANTAS</text>
           <text x="272" y="60">LOCALIZAÇÃO</text>
         </g>
-        <rect x="318" y="52" width="38" height="12" rx="1" fill="#1762FF" opacity="0.9" />
-        <text x="337" y="60" textAnchor="middle" fill="#F2F4F7" fontSize="4.2" fontWeight="700" letterSpacing="0.8">
+        <rect x="318" y="52" width="38" height="12" rx="1" fill="var(--color-accent)" opacity="0.9" />
+        <text x="337" y="60" textAnchor="middle" fill="var(--color-paper)" fontSize="4.2" fontWeight="700" letterSpacing="0.8">
           AGENDAR
         </text>
         <line x1="36" y1="68" x2="368" y2="68" stroke="currentColor" strokeWidth="0.5" opacity="0.18" />
@@ -54,11 +54,11 @@ export function DeviceStack({ className = "" }: { className?: string }) {
 
       {/* 3D viewport with a real building render */}
       <g className="fade-layer" style={delay(440)}>
-        <rect x="36" y="68" width="332" height="118" fill="#071427" />
+        <rect x="36" y="68" width="332" height="118" fill="#0C2C43" />
         {/* sky gradient + horizon */}
         <rect x="36" y="68" width="332" height="118" fill="url(#imovi-sky-grad)" />
         {/* skyline behind */}
-        <g fill="#0B2036" opacity="0.9">
+        <g fill="#10374E" opacity="0.9">
           <rect x="46" y="128" width="26" height="58" />
           <rect x="76" y="140" width="18" height="46" />
           <rect x="300" y="134" width="22" height="52" />
@@ -66,17 +66,17 @@ export function DeviceStack({ className = "" }: { className?: string }) {
         </g>
         {/* hero tower — modulated facade */}
         <g>
-          <polygon points="150,186 150,96 196,86 196,186" fill="#123A6B" />
-          <polygon points="196,186 196,86 236,100 236,186" fill="#0B2646" />
-          <polygon points="150,96 196,86 236,100 196,110" fill="#1A4C86" />
-          <g fill="#4DA3FF" opacity="0.5">
+          <polygon points="150,186 150,96 196,86 196,186" fill="#15537B" />
+          <polygon points="196,186 196,86 236,100 236,186" fill="#0F3E5D" />
+          <polygon points="150,96 196,86 236,100 196,110" fill="#1C6390" />
+          <g fill="var(--color-accent-soft)" opacity="0.5">
             {Array.from({ length: 10 }, (_, f) =>
               Array.from({ length: 4 }, (_, k) => (
                 <rect key={`${f}-${k}`} x={155 + k * 10} y={104 + f * 8} width="6" height="4.4" opacity={(f + k) % 3 === 0 ? 0.35 : 0.8} />
               )),
             )}
           </g>
-          <g fill="#2C6FC9" opacity="0.35">
+          <g fill="#2C89C9" opacity="0.35">
             {Array.from({ length: 9 }, (_, f) =>
               Array.from({ length: 3 }, (_, k) => (
                 <rect key={`r${f}-${k}`} x={201 + k * 11} y={110 + f * 8} width="7" height="4" />
@@ -84,36 +84,36 @@ export function DeviceStack({ className = "" }: { className?: string }) {
             )}
           </g>
           {/* balcony slabs */}
-          <g fill="#4DA3FF" opacity="0.22">
+          <g fill="var(--color-accent-soft)" opacity="0.22">
             {Array.from({ length: 9 }, (_, f) => (
               <rect key={f} x="150" y={110 + f * 8} width="46" height="1.4" />
             ))}
           </g>
           {/* podium + landscaping */}
-          <rect x="128" y="170" width="130" height="16" fill="#0E2C50" />
-          <rect x="128" y="170" width="130" height="1.2" fill="#4DA3FF" opacity="0.4" />
-          <g fill="#12406A">
+          <rect x="128" y="170" width="130" height="16" fill="#124465" />
+          <rect x="128" y="170" width="130" height="1.2" fill="var(--color-accent-soft)" opacity="0.4" />
+          <g fill="#15557A">
             <ellipse cx="122" cy="180" rx="9" ry="6" />
             <ellipse cx="266" cy="181" rx="8" ry="5.5" />
             <ellipse cx="284" cy="183" rx="6" ry="4" />
           </g>
         </g>
         {/* viewport HUD */}
-        <g fill="#4DA3FF" opacity="0.7">
+        <g fill="var(--color-accent-soft)" opacity="0.7">
           <rect x="46" y="76" width="30" height="9" rx="1" fillOpacity="0.18" />
-          <text x="61" y="82.5" textAnchor="middle" fill="#9CD2FF" fontSize="4" fontWeight="700" letterSpacing="0.8">
+          <text x="61" y="82.5" textAnchor="middle" fill="#A3DAF8" fontSize="4" fontWeight="700" letterSpacing="0.8">
             360°
           </text>
         </g>
-        <g stroke="#F2F4F7" strokeWidth="0.5" opacity="0.35">
+        <g stroke="var(--color-paper)" strokeWidth="0.5" opacity="0.35">
           <path d="M344 76v10M339 81h10" />
         </g>
         {/* orbit control pill */}
         <g className="fade-layer" style={delay(680)}>
-          <rect x="160" y="168" width="84" height="12" rx="6" fill="#050E1C" fillOpacity="0.85" stroke="#4DA3FF" strokeOpacity="0.4" strokeWidth="0.5" />
-          <circle cx="170" cy="174" r="3" fill="none" stroke="#9CD2FF" strokeWidth="0.6" />
-          <path d="M167 174h6M170 171v6" stroke="#9CD2FF" strokeWidth="0.5" />
-          <text x="182" y="176" fill="#9CD2FF" fontSize="4" fontWeight="600" letterSpacing="0.8">
+          <rect x="160" y="168" width="84" height="12" rx="6" fill="#0A263A" fillOpacity="0.85" stroke="var(--color-accent-soft)" strokeOpacity="0.4" strokeWidth="0.5" />
+          <circle cx="170" cy="174" r="3" fill="none" stroke="#A3DAF8" strokeWidth="0.6" />
+          <path d="M167 174h6M170 171v6" stroke="#A3DAF8" strokeWidth="0.5" />
+          <text x="182" y="176" fill="#A3DAF8" fontSize="4" fontWeight="600" letterSpacing="0.8">
             ARRASTE PARA GIRAR
           </text>
         </g>
@@ -140,7 +140,7 @@ export function DeviceStack({ className = "" }: { className?: string }) {
               width="96"
               height="32"
               fill="none"
-              stroke={i === 0 ? "#4DA3FF" : "currentColor"}
+              stroke={i === 0 ? "var(--color-accent-soft)" : "currentColor"}
               strokeWidth="0.5"
               strokeOpacity={i === 0 ? 0.8 : 0.2}
             />
@@ -153,7 +153,7 @@ export function DeviceStack({ className = "" }: { className?: string }) {
             <text x="40" y="14" fill="currentColor" fontSize="4.6" fontWeight="700" letterSpacing="0.8" opacity="0.85">
               {u.t}
             </text>
-            <text x="40" y="23" fill={i === 0 ? "#4DA3FF" : "currentColor"} fontSize="3.8" fontWeight="500" letterSpacing="0.6" opacity="0.7">
+            <text x="40" y="23" fill={i === 0 ? "var(--color-accent-soft)" : "currentColor"} fontSize="3.8" fontWeight="500" letterSpacing="0.6" opacity="0.7">
               {u.s}
             </text>
           </g>
@@ -169,7 +169,7 @@ export function DeviceStack({ className = "" }: { className?: string }) {
           height="184"
           rx="12"
           className="fade-layer"
-          fill="#050914"
+          fill="var(--color-ink)"
           style={delay(760)}
         />
         <rect
@@ -187,20 +187,20 @@ export function DeviceStack({ className = "" }: { className?: string }) {
         <g className="fade-layer" style={delay(900)}>
           <rect x="390" y="120" width="28" height="4" rx="2" fill="currentColor" opacity="0.35" />
           {/* phone viewport: same tower, portrait framing */}
-          <rect x="360" y="132" width="88" height="72" fill="#071427" />
+          <rect x="360" y="132" width="88" height="72" fill="#0C2C43" />
           <rect x="360" y="132" width="88" height="72" fill="url(#imovi-sky-grad)" />
-          <polygon points="392,204 392,146 412,141 412,204" fill="#123A6B" />
-          <polygon points="412,204 412,141 430,148 430,204" fill="#0B2646" />
-          <polygon points="392,146 412,141 430,148 412,153" fill="#1A4C86" />
-          <g fill="#4DA3FF" opacity="0.55">
+          <polygon points="392,204 392,146 412,141 412,204" fill="#15537B" />
+          <polygon points="412,204 412,141 430,148 430,204" fill="#0F3E5D" />
+          <polygon points="392,146 412,141 430,148 412,153" fill="#1C6390" />
+          <g fill="var(--color-accent-soft)" opacity="0.55">
             {Array.from({ length: 8 }, (_, f) =>
               Array.from({ length: 2 }, (_, k) => (
                 <rect key={`${f}-${k}`} x={395 + k * 8} y={150 + f * 6.4} width="5" height="3.4" opacity={(f + k) % 3 === 0 ? 0.4 : 0.85} />
               )),
             )}
           </g>
-          <rect x="378" y="194" width="60" height="10" fill="#0E2C50" />
-          <g fill="#12406A">
+          <rect x="378" y="194" width="60" height="10" fill="#124465" />
+          <g fill="#15557A">
             <ellipse cx="374" cy="199" rx="6" ry="4" />
             <ellipse cx="442" cy="200" rx="5" ry="3.4" />
           </g>
@@ -227,8 +227,8 @@ export function DeviceStack({ className = "" }: { className?: string }) {
               MAPA
             </text>
           </g>
-          <rect x="362" y="250" width="84" height="16" rx="1" fill="#1762FF" opacity="0.95" />
-          <text x="404" y="260.5" textAnchor="middle" fill="#F2F4F7" fontSize="4.4" fontWeight="700" letterSpacing="1">
+          <rect x="362" y="250" width="84" height="16" rx="1" fill="var(--color-accent)" opacity="0.95" />
+          <text x="404" y="260.5" textAnchor="middle" fill="var(--color-paper)" fontSize="4.4" fontWeight="700" letterSpacing="1">
             INICIAR TOUR 3D
           </text>
           <rect x="382" y="278" width="44" height="2" rx="1" fill="currentColor" opacity="0.3" />
@@ -240,14 +240,14 @@ export function DeviceStack({ className = "" }: { className?: string }) {
           <rect x="36" y="68" width="332" height="118" />
         </clipPath>
         <linearGradient id="imovi-sky-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0A2A52" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#07172C" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#050E1C" stopOpacity="0.9" />
+          <stop offset="0%" stopColor="#0D4468" stopOpacity="0.9" />
+          <stop offset="60%" stopColor="#0B2F47" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#0A263A" stopOpacity="0.9" />
         </linearGradient>
         <linearGradient id="imovi-sweep-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4DA3FF" stopOpacity="0" />
-          <stop offset="50%" stopColor="#4DA3FF" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#4DA3FF" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--color-accent-soft)" stopOpacity="0" />
+          <stop offset="50%" stopColor="var(--color-accent-soft)" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="var(--color-accent-soft)" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
@@ -259,7 +259,7 @@ export function DeviceStack({ className = "" }: { className?: string }) {
 /* ------------------------------------------------------------------ */
 
 const NAV = ["PAINEL", "UNIDADES", "PLANTAS", "ATENDIMENTOS", "MÍDIA 3D"] as const;
-const STATUS = { free: "#16406F", hold: "#C8922F", sold: "#1762FF" } as const;
+const STATUS = { free: "#19577D", hold: "#C8922F", sold: "var(--color-accent)" } as const;
 
 /** Deterministic, so the drawing never flickers between renders. */
 function unitStatus(col: number, row: number): keyof typeof STATUS {
@@ -270,10 +270,10 @@ function unitStatus(col: number, row: number): keyof typeof STATUS {
 }
 
 const PIPELINE = [
-  { name: "Ana C.", detail: "Unid. 704 · Tipo A · 84 m²", stage: "TOUR 3D", tone: "#4DA3FF" },
+  { name: "Ana C.", detail: "Unid. 704 · Tipo A · 84 m²", stage: "TOUR 3D", tone: "var(--color-accent-soft)" },
   { name: "Rafael M.", detail: "Unid. 302 · Tipo B · 96 m²", stage: "VISITA", tone: "#C8922F" },
-  { name: "Studio Vale", detail: "Cobertura · 148 m²", stage: "PROPOSTA", tone: "#4DA3FF" },
-  { name: "Helena P.", detail: "Unid. 508 · Tipo A · 84 m²", stage: "TOUR 3D", tone: "#4DA3FF" },
+  { name: "Studio Vale", detail: "Cobertura · 148 m²", stage: "PROPOSTA", tone: "var(--color-accent-soft)" },
+  { name: "Helena P.", detail: "Unid. 508 · Tipo A · 84 m²", stage: "TOUR 3D", tone: "var(--color-accent-soft)" },
 ] as const;
 
 export function SystemGraph({ className = "" }: { className?: string }) {
@@ -288,7 +288,7 @@ export function SystemGraph({ className = "" }: { className?: string }) {
       preserveAspectRatio="xMidYMid meet"
     >
       {/* app frame */}
-      <rect x="16" y="16" width="448" height="288" className="fade-layer" fill="#061021" style={delay(0)} />
+      <rect x="16" y="16" width="448" height="288" className="fade-layer" fill="#0B283E" style={delay(0)} />
       <rect
         x="16"
         y="16"
@@ -306,29 +306,29 @@ export function SystemGraph({ className = "" }: { className?: string }) {
       <g className="fade-layer" style={delay(120)}>
         <rect x="16" y="16" width="76" height="288" fill="currentColor" opacity="0.04" />
         <line x1="92" y1="16" x2="92" y2="304" stroke="currentColor" strokeWidth="0.5" opacity="0.2" />
-        <rect x="28" y="30" width="10" height="12" fill="#1762FF" />
-        <rect x="40" y="34" width="4" height="8" fill="#4DA3FF" opacity="0.8" />
+        <rect x="28" y="30" width="10" height="12" fill="var(--color-accent)" />
+        <rect x="40" y="34" width="4" height="8" fill="var(--color-accent-soft)" opacity="0.8" />
         <text x="50" y="40" fill="currentColor" fontSize="6" fontWeight="800" letterSpacing="1.4" opacity="0.85">
           IMOVIX
         </text>
         {NAV.map((n, i) => (
           <g key={n}>
-            {i === 1 && <rect x="16" y={56 + i * 22} width="76" height="18" fill="#1762FF" opacity="0.14" />}
-            {i === 1 && <rect x="16" y={56 + i * 22} width="1.6" height="18" fill="#4DA3FF" />}
+            {i === 1 && <rect x="16" y={56 + i * 22} width="76" height="18" fill="var(--color-accent)" opacity="0.14" />}
+            {i === 1 && <rect x="16" y={56 + i * 22} width="1.6" height="18" fill="var(--color-accent-soft)" />}
             <rect
               x="28"
               y={62 + i * 22}
               width="7"
               height="7"
               fill="none"
-              stroke={i === 1 ? "#4DA3FF" : "currentColor"}
+              stroke={i === 1 ? "var(--color-accent-soft)" : "currentColor"}
               strokeWidth="0.6"
               opacity={i === 1 ? 0.9 : 0.4}
             />
             <text
               x="40"
               y={68 + i * 22}
-              fill={i === 1 ? "#4DA3FF" : "currentColor"}
+              fill={i === 1 ? "var(--color-accent-soft)" : "currentColor"}
               fontSize="4.2"
               fontWeight="600"
               letterSpacing="0.8"
@@ -358,8 +358,8 @@ export function SystemGraph({ className = "" }: { className?: string }) {
         <text x="362" y="33" fill="currentColor" fontSize="4" fontWeight="600" letterSpacing="0.6" opacity="0.5">
           EXPORTAR
         </text>
-        <rect x="408" y="24" width="44" height="13" rx="1" fill="#1762FF" opacity="0.9" />
-        <text x="430" y="33" textAnchor="middle" fill="#F2F4F7" fontSize="4" fontWeight="700" letterSpacing="0.6">
+        <rect x="408" y="24" width="44" height="13" rx="1" fill="var(--color-accent)" opacity="0.9" />
+        <text x="430" y="33" textAnchor="middle" fill="var(--color-paper)" fontSize="4" fontWeight="700" letterSpacing="0.6">
           + MÍDIA 3D
         </text>
       </g>
@@ -402,7 +402,7 @@ export function SystemGraph({ className = "" }: { className?: string }) {
                   width="20"
                   height="18"
                   fill="none"
-                  stroke={st === "sold" ? "#4DA3FF" : "currentColor"}
+                  stroke={st === "sold" ? "var(--color-accent-soft)" : "currentColor"}
                   strokeWidth="0.4"
                   opacity={st === "sold" ? 0.5 : 0.18}
                 />
@@ -486,11 +486,11 @@ export function SystemGraph({ className = "" }: { className?: string }) {
           <text x="8" y="12" fill="currentColor" fontSize="3.6" fontWeight="700" letterSpacing="1.2" opacity="0.45">
             MÍDIA VINCULADA
           </text>
-          <rect x="8" y="18" width="52" height="26" fill="#0B1F3A" />
-          <polygon points="24,44 24,26 34,23 34,44" fill="#16406F" />
-          <polygon points="34,44 34,23 44,26 44,44" fill="#0B2646" />
-          <polygon points="24,26 34,23 44,26 34,29" fill="#1A4C86" />
-          <g fill="#4DA3FF" opacity="0.5">
+          <rect x="8" y="18" width="52" height="26" fill="#103752" />
+          <polygon points="24,44 24,26 34,23 34,44" fill="#19577D" />
+          <polygon points="34,44 34,23 44,26 44,44" fill="#0F3E5D" />
+          <polygon points="24,26 34,23 44,26 34,29" fill="#1C6390" />
+          <g fill="var(--color-accent-soft)" opacity="0.5">
             {Array.from({ length: 5 }, (_, f) => (
               <rect key={f} x="26" y={29 + f * 3} width="6" height="1.6" />
             ))}
@@ -501,8 +501,8 @@ export function SystemGraph({ className = "" }: { className?: string }) {
           <text x="66" y="34" fill="currentColor" fontSize="3.4" fontWeight="500" letterSpacing="0.4" opacity="0.35">
             Vídeo 3D · Planta interativa
           </text>
-          <rect x="66" y="38" width="64" height="7" rx="1" fill="#1762FF" opacity="0.85" />
-          <text x="98" y="43" textAnchor="middle" fill="#F2F4F7" fontSize="3.4" fontWeight="700" letterSpacing="0.5">
+          <rect x="66" y="38" width="64" height="7" rx="1" fill="var(--color-accent)" opacity="0.85" />
+          <text x="98" y="43" textAnchor="middle" fill="var(--color-paper)" fontSize="3.4" fontWeight="700" letterSpacing="0.5">
             ENVIAR AO CLIENTE
           </text>
         </g>
@@ -515,7 +515,7 @@ export function SystemGraph({ className = "" }: { className?: string }) {
           {["CRM", "WHATSAPP", "PORTAIS"].map((t, i) => (
             <g key={t} transform={`translate(${i * 48} 8)`}>
               <rect width="44" height="10" rx="1" fill="none" stroke="currentColor" strokeWidth="0.4" opacity="0.25" />
-              <circle cx="7" cy="5" r="1.6" fill="#4DA3FF" opacity="0.8" />
+              <circle cx="7" cy="5" r="1.6" fill="var(--color-accent-soft)" opacity="0.8" />
               <text x="13" y="7" fill="currentColor" fontSize="3.2" fontWeight="600" letterSpacing="0.4" opacity="0.5">
                 {t}
               </text>
@@ -531,9 +531,9 @@ export function SystemGraph({ className = "" }: { className?: string }) {
 
       <defs>
         <linearGradient id="imovi-board-sweep" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4DA3FF" stopOpacity="0" />
-          <stop offset="50%" stopColor="#4DA3FF" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#4DA3FF" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--color-accent-soft)" stopOpacity="0" />
+          <stop offset="50%" stopColor="var(--color-accent-soft)" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="var(--color-accent-soft)" stopOpacity="0" />
         </linearGradient>
         <clipPath id="imovi-board-clip">
           <rect x="104" y="78" width="188" height="154" />
@@ -585,7 +585,7 @@ export function FilmFrame({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-40"
       >
-        <svg viewBox="0 0 100 100" className="h-9 w-9" fill="none" stroke="#F2F4F7" strokeWidth="1.4">
+        <svg viewBox="0 0 100 100" className="h-9 w-9" fill="none" stroke="var(--color-paper)" strokeWidth="1.4">
           <path d="M50 34v32M34 50h32" />
         </svg>
       </span>

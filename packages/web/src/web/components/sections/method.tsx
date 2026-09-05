@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 import { useSteppedFocus } from "../../hooks/use-stage";
 import { BlueprintPlan, Massing3D } from "../visuals/arch";
 
@@ -34,11 +35,9 @@ export function Method() {
   const { active, setRef } = useSteppedFocus(STEPS.length);
 
   return (
-    <section className="relative overflow-x-clip bg-ink py-24 sm:py-32 lg:py-40">
+    <section id="metodo" className="relative overflow-x-clip bg-ink py-24 sm:py-32 lg:py-40">
       <div ref={headRef} className="reveal mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
-        <p className="label" data-reveal>
-          Método IMOVIX
-        </p>
+        <SheetLabel code="A-06">Método IMOVIX</SheetLabel>
         <h2 className="display d2 mt-7 uppercase text-paper" data-reveal>
           Do projeto
           <br />

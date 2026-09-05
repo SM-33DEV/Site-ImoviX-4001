@@ -28,9 +28,12 @@ const SHEETS = [
   { id: "numeros", code: "A-01" },
   { id: "parceiros", code: "A-02" },
   { id: "solucoes", code: "A-03" },
-  { id: "projetos", code: "A-04" },
-  { id: "sobre", code: "A-05" },
-  { id: "contato", code: "A-06" },
+  { id: "editorial", code: "A-04" },
+  { id: "publicos", code: "A-05" },
+  { id: "metodo", code: "A-06" },
+  { id: "projetos", code: "A-07" },
+  { id: "sobre", code: "A-08" },
+  { id: "contato", code: "A-09" },
 ] as const;
 
 export function SheetChrome() {
@@ -78,7 +81,7 @@ export function SheetChrome() {
         <Cell k="Projeto" v="IMOVIX" />
         <Cell k="Prancha" v={sheet.code} />
         <Cell k="Escala" v="1:1" />
-        <Cell k="Folha" v={`${String(active + 1).padStart(2, "0")}/06`} last />
+        <Cell k="Folha" v={`${String(active + 1).padStart(2, "0")}/09`} last />
       </div>
     </>
   );

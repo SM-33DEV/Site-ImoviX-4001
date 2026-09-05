@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 
 const SCENES = [
   {
@@ -35,11 +36,9 @@ export function Audience() {
   const headRef = useReveal<HTMLDivElement>(110);
 
   return (
-    <section className="relative overflow-hidden bg-ink-2 py-24 sm:py-32 lg:py-40">
+    <section id="publicos" className="relative overflow-hidden bg-ink-2 py-24 sm:py-32 lg:py-40">
       <div ref={headRef} className="reveal mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
-        <p className="label" data-reveal>
-          Para quem
-        </p>
+        <SheetLabel code="A-05">Para quem</SheetLabel>
         <h2 className="display d2 mt-7 uppercase text-paper" data-reveal>
           Feito para quem
           <br />

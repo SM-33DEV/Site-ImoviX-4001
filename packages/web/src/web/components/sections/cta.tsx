@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 import { MagneticCta } from "../ui/magnetic-cta";
 import { EMAIL, whatsappUrl } from "../../config/site";
 
@@ -15,9 +16,7 @@ export function Cta() {
         aria-hidden="true"
       />
       <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
-        <p className="label" data-reveal>
-          Contato
-        </p>
+        <SheetLabel code="A-09">Contato</SheetLabel>
         <h2
           className="display d1 mt-8 max-w-[18ch] text-paper"
           data-reveal

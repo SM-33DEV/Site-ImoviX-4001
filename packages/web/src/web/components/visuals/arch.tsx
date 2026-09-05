@@ -486,11 +486,11 @@ type Block = {
 };
 
 /* Palette baked in so the volumes read as solid architecture. */
-const FILL_TOP = "#16406F";
-const FILL_LEFT = "#0E2A4E";
-const FILL_RIGHT = "#081C34";
-const EDGE = "#4DA3FF";
-const GLASS = "#2C6FC9";
+const FILL_TOP = "#19577D";
+const FILL_LEFT = "#124263";
+const FILL_RIGHT = "#0C344E";
+const EDGE = "var(--color-accent-soft)";
+const GLASS = "#2C89C9";
 
 /** Front-left facade lives at y = block.y + block.d (varies in x and z). */
 function quadXZ(b: Block, x1: number, x2: number, z1: number, z2: number) {
@@ -613,7 +613,7 @@ function Volume({ b, index, lit }: { b: Block; index: number; lit: boolean }) {
             ]);
             return (
               <g key={f}>
-                <polygon points={slab} fill="#1B4E86" fillOpacity="0.9" />
+                <polygon points={slab} fill="#1D6490" fillOpacity="0.9" />
                 <polygon points={rail} fill={EDGE} fillOpacity="0.16" stroke={EDGE} strokeWidth="0.25" strokeOpacity="0.5" />
               </g>
             );
@@ -708,14 +708,14 @@ function Tree({ x, y, s = 1, delay }: { x: number; y: number; s?: number; delay:
   const [bx, by] = project(x, y, 0);
   return (
     <g className="fade-layer" style={d(delay)} transform={`translate(${bx.toFixed(2)} ${by.toFixed(2)})`}>
-      <ellipse cx="0" cy="0" rx={4 * s} ry={2 * s} fill="#03080F" opacity="0.6" />
-      <line x1="0" y1="0" x2="0" y2={-4.6 * s} stroke="#2A5C86" strokeWidth={0.6 * s} opacity="0.85" />
-      <g fill="#12395C">
+      <ellipse cx="0" cy="0" rx={4 * s} ry={2 * s} fill="#091F2E" opacity="0.6" />
+      <line x1="0" y1="0" x2="0" y2={-4.6 * s} stroke="#2C6B8D" strokeWidth={0.6 * s} opacity="0.85" />
+      <g fill="#154E6E">
         <ellipse cx={-2 * s} cy={-6 * s} rx={3 * s} ry={2.6 * s} />
         <ellipse cx={2.2 * s} cy={-6.6 * s} rx={2.8 * s} ry={2.4 * s} />
         <ellipse cx={0} cy={-9 * s} rx={3.2 * s} ry={2.8 * s} />
       </g>
-      <g fill="#255F8C" opacity="0.65">
+      <g fill="#276E93" opacity="0.65">
         <ellipse cx={-1.6 * s} cy={-9.6 * s} rx={1.8 * s} ry={1.5 * s} />
         <ellipse cx={1.6 * s} cy={-7.4 * s} rx={1.4 * s} ry={1.2 * s} />
       </g>
@@ -771,7 +771,7 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
       preserveAspectRatio="xMidYMid meet"
     >
       {/* terrain */}
-      <polygon className="fade-layer" points={groundPoints} fill="#061224" style={d(0)} />
+      <polygon className="fade-layer" points={groundPoints} fill="#0B2A41" style={d(0)} />
       <polygon
         className="draw"
         pathLength="1"
@@ -784,7 +784,7 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
 
       {/* landscape decals behind the buildings */}
       <g className="fade-layer" style={d(60)}>
-        <polygon points={drive} fill="#0A1E38" />
+        <polygon points={drive} fill="#0E3651" />
       </g>
 
       {/* ground shadows, offset away from the light */}
@@ -798,7 +798,7 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
               project(b.x + b.w + b.h * 0.16, b.y + b.d + b.h * 0.3, 0),
               project(b.x + b.h * 0.16, b.y + b.d + b.h * 0.3, 0),
             ])}
-            fill="#03080F"
+            fill="#091F2E"
           />
         ))}
       </g>
@@ -815,10 +815,10 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
 
       {/* pool deck sits in front of the podium */}
       <g className="fade-layer" style={d(560)}>
-        <polygon points={deck} fill="#0C2440" />
+        <polygon points={deck} fill="#103B57" />
         <polygon points={deck} fill="none" stroke={EDGE} strokeWidth="0.3" opacity="0.35" />
-        <polygon points={pool} fill="#1C5FA8" fillOpacity="0.75" />
-        <polygon points={pool} fill="none" stroke="#7FC0FF" strokeWidth="0.4" opacity="0.6" />
+        <polygon points={pool} fill="#1D76AD" fillOpacity="0.75" />
+        <polygon points={pool} fill="none" stroke="#89CDF5" strokeWidth="0.4" opacity="0.6" />
         {[0, 1, 2].map((i) => (
           <line
             key={i}
@@ -826,7 +826,7 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
             y1={project(56, 62 + i * 6, 0)[1]}
             x2={project(76, 62 + i * 6, 0)[0]}
             y2={project(76, 62 + i * 6, 0)[1]}
-            stroke="#9CD2FF"
+            stroke="#A3DAF8"
             strokeWidth="0.25"
             opacity="0.4"
           />
@@ -836,7 +836,7 @@ export function Massing3D({ className = "", lit = false }: MassingProps) {
           const [lx, ly] = project(80, 58 + i * 8, 0);
           return (
             <g key={`l${i}`} transform={`translate(${lx.toFixed(2)} ${ly.toFixed(2)})`}>
-              <polygon points="0,0 5,2.5 2,4 -3,1.5" fill="#123A63" stroke={EDGE} strokeWidth="0.2" strokeOpacity="0.5" />
+              <polygon points="0,0 5,2.5 2,4 -3,1.5" fill="#155074" stroke={EDGE} strokeWidth="0.2" strokeOpacity="0.5" />
             </g>
           );
         })}

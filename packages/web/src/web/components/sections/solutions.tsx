@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 import { useStage } from "../../hooks/use-stage";
 import { DeviceStack, FilmFrame, SystemGraph } from "../visuals/interfaces";
 import { PlanMorph } from "../visuals/plan-morph";
@@ -45,9 +46,7 @@ export function Solutions() {
       />
 
       <div ref={revealRef} className="reveal mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
-        <p className="label" data-reveal>
-          Soluções IMOVIX
-        </p>
+        <SheetLabel code="A-03">Soluções IMOVIX</SheetLabel>
         <h2
           className="display d2 mt-7 uppercase text-paper"
           data-reveal

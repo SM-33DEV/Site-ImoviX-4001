@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SheetLabel } from "../ui/sheet-label";
 import { useReveal } from "../../hooks/use-reveal";
 
 /**
@@ -155,9 +156,7 @@ export function Partners() {
       className="relative border-b border-[var(--hair)] bg-ink"
     >
       <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 py-16 sm:px-10 sm:py-20 lg:px-16">
-        <p className="label" data-reveal>
-          Parceiros
-        </p>
+        <SheetLabel code="A-02">Parceiros</SheetLabel>
 
         <div className="marquee-mask mt-10 overflow-hidden" data-reveal>
           <ul className="marquee-track flex w-max items-center">

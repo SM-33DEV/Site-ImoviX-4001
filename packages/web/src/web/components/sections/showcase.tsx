@@ -1,4 +1,5 @@
 import { useReveal } from "../../hooks/use-reveal";
+import { SheetLabel } from "../ui/sheet-label";
 import { isWhatsappLive, whatsappUrl } from "../../config/site";
 
 /**
@@ -57,9 +58,7 @@ export function Showcase() {
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="label" data-reveal>
-                Projetos
-              </p>
+              <SheetLabel code="A-07">Projetos</SheetLabel>
               <h2 className="display d2 mt-7 max-w-[15ch] text-paper" data-reveal>
                 Empreendimentos vividos antes de existir.
               </h2>

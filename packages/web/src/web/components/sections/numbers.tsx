@@ -1,4 +1,5 @@
 import { useCallback, useRef } from "react";
+import { SheetLabel } from "../ui/sheet-label";
 import { useReveal } from "../../hooks/use-reveal";
 import { useCountUp } from "../../hooks/use-count-up";
 
@@ -43,9 +44,7 @@ export function Numbers() {
         ref={headRef}
         className="reveal relative mx-auto max-w-[1400px] px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24"
       >
-        <p className="label" data-reveal>
-          IMOVIX em números
-        </p>
+        <SheetLabel code="A-01">IMOVIX em números</SheetLabel>
 
         <div className="mt-9 grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div data-reveal>
