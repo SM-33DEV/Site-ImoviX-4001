@@ -6,9 +6,6 @@ const TOTAL = 7_200_000;
 
 const brl = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
 
-/** Setores atendidos — os mesmos da seção PARA QUEM, aqui como leitura rápida. */
-const SECTORS = ["Construtoras", "Incorporadoras", "Imobiliárias", "Investidores"] as const;
-
 export function Numbers() {
   const headRef = useReveal<HTMLDivElement>(110);
   const railRef = useRef<HTMLSpanElement | null>(null);
@@ -80,14 +77,6 @@ export function Numbers() {
             style={{ transform: "scaleX(0)" }}
           />
         </div>
-
-        <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-3" data-reveal>
-          {SECTORS.map((sector) => (
-            <li key={sector} className="label-xs text-paper/60">
-              {sector}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

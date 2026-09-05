@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { WHATSAPP_NUMBER, whatsappUrl } from "../../config/site";
+import { isWhatsappLive, whatsappUrl } from "../../config/site";
 
 /**
  * Botão flutuante de WhatsApp.
@@ -10,13 +10,10 @@ import { WHATSAPP_NUMBER, whatsappUrl } from "../../config/site";
  * passa a abrir a conversa automaticamente — nenhuma outra mudança é
  * necessária. Mesmo ponto de troca para uma API futura.
  */
-const PLACEHOLDER = "5511999999999";
-
 export function WhatsappFab() {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [live, setLive] = useState(false);
-  const numero: string = WHATSAPP_NUMBER;
-  const isLive = numero !== PLACEHOLDER && numero.length > 10;
+  const isLive = isWhatsappLive();
 
   // Aparece depois do primeiro trecho do hero, para não competir com a abertura.
   useEffect(() => {

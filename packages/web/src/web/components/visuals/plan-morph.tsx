@@ -34,12 +34,12 @@ export function PlanMorph({ active }: { active: boolean }) {
       >
         <img
           src="/scenes/desejo.jpg"
-          alt=""
+          alt="Fase final do ciclo: o mesmo empreendimento renderizado como imagem real"
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover opacity-85"
         />
-        <span className="absolute inset-0 bg-ink/25" />
+        <span aria-hidden="true" className="absolute inset-0 bg-ink/25" />
       </div>
 
       {/* phase readout */}
