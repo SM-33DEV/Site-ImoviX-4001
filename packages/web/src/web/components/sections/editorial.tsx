@@ -13,7 +13,7 @@ export function Editorial() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[900px] -translate-x-1/2"
-        style={{ background: "radial-gradient(ellipse at top, rgba(23,98,255,0.16), transparent 65%)" }}
+        style={{ background: "radial-gradient(ellipse at top, rgba(37, 137, 201,0.16), transparent 65%)" }}
       />
 
       {/* ---------------- statement ---------------- */}

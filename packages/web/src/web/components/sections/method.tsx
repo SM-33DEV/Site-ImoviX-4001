@@ -95,7 +95,7 @@ function StepBody({ step, isActive }: { step: (typeof STEPS)[number]; isActive: 
 
       <h3
         className="display d3 mt-6 uppercase transition-colors duration-700"
-        style={{ color: isActive ? "var(--color-paper)" : "rgba(242,244,247,0.55)" }}
+        style={{ color: isActive ? "var(--color-paper)" : "rgba(221, 231, 239,0.55)" }}
         data-reveal
       >
         {step.title}
@@ -153,7 +153,7 @@ function MethodStage({ active, compact = false }: { active: number; compact?: bo
                 key={tab}
                 className="px-2 py-1 text-[0.5625rem] font-bold tracking-[0.2em] sm:text-[0.625rem]"
                 style={{
-                  color: i === 0 ? "var(--color-paper)" : "rgba(242,244,247,0.35)",
+                  color: i === 0 ? "var(--color-paper)" : "rgba(221, 231, 239,0.35)",
                   borderBottom: i === 0 ? "1px solid var(--color-accent)" : "1px solid transparent",
                 }}
               >

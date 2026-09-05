@@ -36,7 +36,7 @@ export function Numbers() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(78% 120% at 22% 0%, rgba(23,98,255,0.16) 0%, rgba(5,9,20,0) 62%)",
+            "radial-gradient(78% 120% at 22% 0%, rgba(37, 137, 201,0.16) 0%, rgba(10, 32, 54,0) 62%)",
         }}
       />
 

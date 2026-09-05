@@ -110,7 +110,7 @@ export function Showcase() {
                       className="h-full w-full object-cover opacity-90 transition-[opacity,transform] duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.03] group-hover:opacity-100 group-focus-visible:scale-[1.03] group-focus-visible:opacity-100"
                     />
                     <div
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050914]/85 via-transparent to-transparent"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a2036]/85 via-transparent to-transparent"
                       aria-hidden="true"
                     />
                     <span className="absolute left-6 top-6 label text-paper/70">

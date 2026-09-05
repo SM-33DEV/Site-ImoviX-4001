@@ -153,7 +153,7 @@ export function Partners() {
     <section
       id="parceiros"
       aria-label="Empresas parceiras"
-      className="relative border-b border-[var(--hair)] bg-ink-2"
+      className="relative overflow-x-clip border-b border-[var(--hair)] bg-ink-2"
     >
       <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 pt-0 pb-16 sm:px-10 sm:pb-20 lg:px-16">
         <SheetLabel code="A-02">Parceiros</SheetLabel>
@@ -161,8 +161,12 @@ export function Partners() {
         {/* Película: uma faixa sangrada de ponta a ponta, mais escura que a
             seção, que dá à esteira uma pista própria. Sem ela as logos
             flutuam no fundo; com ela viram uma tira de registro, que é o que
-            uma legenda de prancha faz. Sangra além do container por um
-            `w-screen` centrado — o body tem overflow-x oculto. */}
+            uma legenda de prancha faz.
+
+            Sangra por um `w-screen` centrado. Atenção: `100vw` INCLUI a barra
+            de rolagem, então a faixa fica ~15px mais larga que a área de
+            conteúdo e criava scroll horizontal na página. Por isso a seção
+            leva `overflow-x-clip` — mesmo recurso já usado em Soluções. */}
         <div className="relative mt-3">
           <span
             aria-hidden="true"

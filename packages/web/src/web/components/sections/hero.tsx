@@ -151,7 +151,7 @@ export function Hero() {
             width={900}
             height={510}
             className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: "center 42%", backgroundColor: "#050914" }}
+            style={{ objectPosition: "center 42%", backgroundColor: "#0a2036" }}
           />
         ) : streamVideo ? (
           <video
@@ -186,14 +186,14 @@ export function Hero() {
           style={{
             opacity: 0.34,
             background:
-              "linear-gradient(180deg, rgba(5,9,20,0.86) 0%, rgba(5,9,20,0.14) 34%, rgba(5,9,20,0.22) 62%, rgba(5,9,20,0.92) 100%)",
+              "linear-gradient(180deg, rgba(10, 32, 54,0.86) 0%, rgba(10, 32, 54,0.14) 34%, rgba(10, 32, 54,0.22) 62%, rgba(10, 32, 54,0.92) 100%)",
           }}
         />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 80% at 50% 50%, rgba(5,9,20,0) 38%, rgba(5,9,20,0.55) 100%)",
+              "radial-gradient(120% 80% at 50% 50%, rgba(10, 32, 54,0) 38%, rgba(10, 32, 54,0.55) 100%)",
           }}
         />
         {/* Left scrim — keeps the copy readable over bright architecture. */}
@@ -201,7 +201,7 @@ export function Hero() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(5,9,20,0.78) 0%, rgba(5,9,20,0.52) 26%, rgba(5,9,20,0.16) 56%, rgba(5,9,20,0) 78%)",
+              "linear-gradient(90deg, rgba(10, 32, 54,0.78) 0%, rgba(10, 32, 54,0.52) 26%, rgba(10, 32, 54,0.16) 56%, rgba(10, 32, 54,0) 78%)",
           }}
         />
 

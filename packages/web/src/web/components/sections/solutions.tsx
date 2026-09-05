@@ -3,6 +3,7 @@ import { SheetLabel } from "../ui/sheet-label";
 import { useStage } from "../../hooks/use-stage";
 import { DeviceStack, FilmFrame, SystemGraph } from "../visuals/interfaces";
 import { PlanMorph } from "../visuals/plan-morph";
+import { MediaSlot } from "../ui/media-slot";
 
 const SOLUTIONS = [
   {
@@ -42,7 +43,7 @@ export function Solutions() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(23,98,255,0.55), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(37, 137, 201,0.55), transparent)" }}
       />
 
       <div ref={revealRef} className="reveal mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
@@ -66,35 +67,66 @@ export function Solutions() {
         {/* ---------------- stage ---------------- */}
         <div className="order-1 lg:order-2 lg:sticky lg:top-28">
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-[var(--hair)] bg-ink-2">
-            {/* layer 01 — cinematic frame */}
+            {/* Cada camada tem um encaixe de mídia. Registre a peça em
+                config/media.ts e ela SUBSTITUI a ilustração aqui — até lá a
+                ilustração autoral segue no lugar, então o palco nunca fica
+                vazio esperando material. */}
+
+            {/* camada 01 — vídeos 3D */}
             <Layer active={active === 0}>
-              <FilmFrame
-                src="/projects/projeto-01.jpg"
-                alt="Frame cinematográfico de um empreendimento em 3D"
-                timecode="00:00:04:12"
-                live={active === 0}
-                hud={false}
-                className="h-full w-full"
+              <MediaSlot
+                encaixe="A-03.01"
+                proporcao="4/3"
+                className="h-full w-full border-0"
+                fallback={
+                  <FilmFrame
+                    src="/projects/projeto-01.jpg"
+                    alt="Frame cinematográfico de um empreendimento em 3D"
+                    timecode="00:00:04:12"
+                    live={active === 0}
+                    hud={false}
+                    className="h-full w-full"
+                  />
+                }
               />
             </Layer>
 
-            {/* layer 02 — immersive site */}
+            {/* camada 02 — sites 3D imersivos */}
             <Layer active={active === 1}>
-              <div className="flex h-full w-full items-center justify-center p-4 text-accent-soft sm:p-8">
-                <DeviceStack className="h-full w-full" />
-              </div>
+              <MediaSlot
+                encaixe="A-03.02"
+                proporcao="4/3"
+                className="h-full w-full border-0"
+                fallback={
+                  <div className="flex h-full w-full items-center justify-center p-4 text-accent-soft sm:p-8">
+                    <DeviceStack className="h-full w-full" />
+                  </div>
+                }
+              />
             </Layer>
 
-            {/* layer 03 — 2D → 3D → real */}
+            {/* camada 03 — plantas e visualização 3D */}
             <Layer active={active === 2}>
-              <PlanMorph active={active === 2} />
+              <MediaSlot
+                encaixe="A-03.03"
+                proporcao="4/3"
+                className="h-full w-full border-0"
+                fallback={<PlanMorph active={active === 2} />}
+              />
             </Layer>
 
-            {/* layer 04 — digital system */}
+            {/* camada 04 — sistemas e experiências digitais */}
             <Layer active={active === 3}>
-              <div className="flex h-full w-full items-center justify-center p-4 text-paper sm:p-8">
-                <SystemGraph className="h-full w-full" />
-              </div>
+              <MediaSlot
+                encaixe="A-03.04"
+                proporcao="4/3"
+                className="h-full w-full border-0"
+                fallback={
+                  <div className="flex h-full w-full items-center justify-center p-4 text-paper sm:p-8">
+                    <SystemGraph className="h-full w-full" />
+                  </div>
+                }
+              />
             </Layer>
 
             {/* stage chrome */}
@@ -143,7 +175,7 @@ export function Solutions() {
                     <span
                       className="display d3 block transition-[color,transform] duration-700 ease-[var(--ease-out-expo)]"
                       style={{
-                        color: isActive ? "var(--color-paper)" : "rgba(242,244,247,0.42)",
+                        color: isActive ? "var(--color-paper)" : "rgba(221, 231, 239,0.42)",
                         transform: isActive ? "translateX(6px)" : "none",
                       }}
                     >
