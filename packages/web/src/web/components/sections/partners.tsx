@@ -158,14 +158,25 @@ export function Partners() {
       <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 pt-0 pb-16 sm:px-10 sm:pb-20 lg:px-16">
         <SheetLabel code="A-02">Parceiros</SheetLabel>
 
-        <div className="marquee-mask mt-3 overflow-hidden" data-reveal>
-          <ul className="marquee-track flex w-max items-center">
-            {LOOPS.map((loop) =>
-              PARTNERS.map((partner) => (
-                <Logo key={`${partner.name}-${loop}`} {...partner} hidden={loop > 0} />
-              )),
-            )}
-          </ul>
+        {/* Película: uma faixa sangrada de ponta a ponta, mais escura que a
+            seção, que dá à esteira uma pista própria. Sem ela as logos
+            flutuam no fundo; com ela viram uma tira de registro, que é o que
+            uma legenda de prancha faz. Sangra além do container por um
+            `w-screen` centrado — o body tem overflow-x oculto. */}
+        <div className="relative mt-3">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 border-y border-[var(--hair)] bg-ink/55"
+          />
+          <div className="marquee-mask relative overflow-hidden py-5" data-reveal>
+            <ul className="marquee-track flex w-max items-center">
+              {LOOPS.map((loop) =>
+                PARTNERS.map((partner) => (
+                  <Logo key={`${partner.name}-${loop}`} {...partner} hidden={loop > 0} />
+                )),
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
