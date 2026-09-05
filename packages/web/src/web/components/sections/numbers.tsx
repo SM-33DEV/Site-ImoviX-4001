@@ -29,7 +29,7 @@ export function Numbers() {
     <section
       id="numeros"
       aria-label="IMOVIX em números"
-      className="relative border-y border-[var(--hair)] bg-ink-2"
+      className="relative border-t border-[var(--hair)] bg-ink-2"
     >
       {/* Halo azul discreto atrás do número, dentro da paleta. */}
       <div
@@ -42,7 +42,7 @@ export function Numbers() {
 
       <div
         ref={headRef}
-        className="reveal relative mx-auto max-w-[1400px] px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24"
+        className="reveal relative mx-auto max-w-[1400px] px-6 pt-16 pb-4 sm:px-10 sm:pt-20 sm:pb-4 lg:px-16 lg:pt-24 lg:pb-5"
       >
         <SheetLabel code="A-01">IMOVIX em números</SheetLabel>
 

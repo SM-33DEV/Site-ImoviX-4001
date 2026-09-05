@@ -153,12 +153,12 @@ export function Partners() {
     <section
       id="parceiros"
       aria-label="Empresas parceiras"
-      className="relative border-b border-[var(--hair)] bg-ink"
+      className="relative border-b border-[var(--hair)] bg-ink-2"
     >
-      <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 py-16 sm:px-10 sm:py-20 lg:px-16">
+      <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 pt-0 pb-16 sm:px-10 sm:pb-20 lg:px-16">
         <SheetLabel code="A-02">Parceiros</SheetLabel>
 
-        <div className="marquee-mask mt-10 overflow-hidden" data-reveal>
+        <div className="marquee-mask mt-3 overflow-hidden" data-reveal>
           <ul className="marquee-track flex w-max items-center">
             {LOOPS.map((loop) =>
               PARTNERS.map((partner) => (
