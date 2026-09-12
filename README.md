@@ -1,5 +1,9 @@
 # sandbox-app-template
 
+## IMOVIX — trabalhar em outra máquina
+
+A versão atual do site está na branch `feat/prancheta`. Consulte [o guia de desenvolvimento remoto](docs/REMOTE-DEVELOPMENT.md) para usar GitHub Codespaces ou instalar em outro computador, e [o contexto do projeto](docs/PROJECT-CONTEXT.md) para manter as decisões de design.
+
 Monorepo: Bun workspaces + Turborepo.
 
 ## Commands

@@ -1,0 +1,16 @@
+{
+  "name": "IMOVIX — desenvolvimento remoto",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "node",
+  "forwardPorts": [4200],
+  "portsAttributes": {
+    "4200": {
+      "label": "IMOVIX — prévia de desenvolvimento",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    }
+  },
+  "otherPortsAttributes": { "onAutoForward": "ignore" },
+  "postCreateCommand": "bun install --frozen-lockfile && bun scripts/keep-allintra.ts",
+  "postStartCommand": "bash .devcontainer/start-preview.sh"
+}

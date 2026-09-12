@@ -2,6 +2,8 @@
 node_modules
 
 # output
+output/
+.claude/
 out
 dist
 dist-electron

@@ -95,7 +95,11 @@ async function main(): Promise<void> {
     return;
   }
 
-  await fs.mkdir(CACHE_DIR, { recursive: true });
+  await fs.mkdir(CACHE_DIR, { recursive: true }).catch(async (error: NodeJS.ErrnoException) => {
+    // Bun on Windows can report EEXIST for an existing OneDrive directory.
+    // Accept only that case; a regular file or any other failure must still fail.
+    if (error.code !== "EEXIST" || !(await fs.stat(CACHE_DIR)).isDirectory()) throw error;
+  });
 
   console.log(`[keep-allintra] SETTINGS_VERSION=${settingsVersion} (lido do plugin)`);
 
