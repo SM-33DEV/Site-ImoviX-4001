@@ -5,7 +5,7 @@ const END_EPSILON = 0.05;
 /** Don't reseek for sub-perceptual differences. */
 const SEEK_EPSILON = 0.01;
 /** Time-based damping constant (higher = snappier). */
-const DAMPING = 12;
+const DAMPING = 18;
 
 type ProgressListener = (progress: number) => void;
 

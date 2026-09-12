@@ -25,10 +25,23 @@
 // play, e é ele que o visitante vê se decidir não clicar.
 // ---------------------------------------------------------------------------
 
+import type { TourId } from "./tour";
+
 /** O que o encaixe está exibindo. */
 export type TipoDePeca = "video" | "imagem" | "tour";
 
-export type Peca = {
+/** O que toda peça tem, seja ela arquivo ou percurso. */
+type PecaBase = {
+  /** Texto alternativo. Descreva o que se vê, não o formato do arquivo. */
+  alt: string;
+  /** Legenda curta sob a peça. Opcional. */
+  legenda?: string;
+  /** Empreendimento a que a peça pertence, se fizer sentido nomear. */
+  empreendimento?: string;
+};
+
+/** Peça que é um ARQUIVO: vídeo, imagem, ou walkthrough gravado. */
+type PecaArquivo = PecaBase & {
   tipo: TipoDePeca;
   /** Caminho absoluto a partir de public/ — ex.: "/media/aurora-tour.mp4". */
   src: string;
@@ -37,13 +50,29 @@ export type Peca = {
    * enquanto o arquivo pesado só desce se o visitante pedir.
    */
   poster?: string;
-  /** Texto alternativo. Descreva o que se vê, não o formato do arquivo. */
-  alt: string;
-  /** Legenda curta sob a peça. Opcional. */
-  legenda?: string;
-  /** Empreendimento a que a peça pertence, se fizer sentido nomear. */
-  empreendimento?: string;
 };
+
+/**
+ * Peça que é um PERCURSO navegável, descrito em `config/tour.ts`.
+ *
+ * Não tem `src` — e essa ausência é o ponto. As duas coisas se chamam "tour"
+ * no mercado: o walkthrough gravado, que é um arquivo de vídeo, e o percurso
+ * clicável, que é um grafo de ambientes. Um campo `src` opcional deixaria os
+ * dois representáveis pelo mesmo objeto, e um tour navegável apontando para
+ * um .mp4 fantasma compilaria sem reclamar. Separados, não compilam.
+ */
+type PecaTour = PecaBase & {
+  tipo: "tour";
+  /** Qual percurso de `config/tour.ts` este encaixe exibe. */
+  tour: TourId;
+};
+
+export type Peca = PecaArquivo | PecaTour;
+
+/** Distingue as duas leituras de "tour" sem depender de campo opcional. */
+export function ehTourNavegavel(p: Peca): p is PecaTour {
+  return p.tipo === "tour" && "tour" in p;
+}
 
 /**
  * Os encaixes, nomeados pelo código da prancha em que aparecem — o mesmo que
@@ -82,7 +111,17 @@ export type Encaixe =
  */
 export const PECAS: Record<Encaixe, Peca | null> = {
   "A-03.01": null,
-  "A-03.02": null,
+  // O único encaixe que não espera arquivo: o percurso já existe em
+  // `config/tour.ts` e navega desde agora, com os ambientes em prancha branca.
+  // Cada render que chegar preenche um `null` de lá, e este encaixe melhora
+  // sozinho — sem nunca ter passado por um estado quebrado.
+  "A-03.02": {
+    tipo: "tour",
+    tour: "aurora",
+    alt: "Tour navegável pelo apartamento tipo e pela área de lazer do Residencial Aurora",
+    legenda: "Tour navegável · 8 ambientes",
+    empreendimento: "Residencial Aurora",
+  },
   "A-03.03": null,
   "A-03.04": null,
   "A-06.01": null,

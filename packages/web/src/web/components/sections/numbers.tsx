@@ -1,5 +1,4 @@
 import { useCallback, useRef } from "react";
-import { SheetLabel } from "../ui/sheet-label";
 import { useReveal } from "../../hooks/use-reveal";
 import { useCountUp } from "../../hooks/use-count-up";
 
@@ -29,47 +28,31 @@ export function Numbers() {
     <section
       id="numeros"
       aria-label="IMOVIX em números"
-      className="relative border-t border-[var(--hair)] bg-ink-2"
+      className="studio-results"
     >
-      {/* Halo azul discreto atrás do número, dentro da paleta. */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(78% 120% at 22% 0%, rgba(37, 137, 201,0.16) 0%, rgba(10, 32, 54,0) 62%)",
-        }}
-      />
 
       <div
         ref={headRef}
-        className="reveal relative mx-auto max-w-[1400px] px-6 pt-16 pb-4 sm:px-10 sm:pt-20 sm:pb-4 lg:px-16 lg:pt-24 lg:pb-5"
+        className="studio-wrap reveal"
       >
-        <SheetLabel code="A-01">IMOVIX em números</SheetLabel>
+        <p className="studio-eyebrow">Experiências que se tornam resultados</p>
 
-        <div className="mt-9 grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div className="studio-results-grid">
           <div data-reveal>
-            <p className="display d1 flex flex-wrap items-baseline gap-x-3 text-paper">
-              <span className="text-accent-soft">R$</span>
+            <p className="studio-total">
+              <span className="studio-currency">R$</span>
               <span ref={valueRef} className="tabular-nums" aria-hidden="true">
                 0
               </span>
               <span className="sr-only">{brl.format(TOTAL)}</span>
             </p>
-            <p className="lead mt-5 max-w-[34ch] text-muted">
-              Total captado por nossos clientes em vendas imobiliárias com os produtos IMOVIX.
-            </p>
           </div>
 
-          <p
-            className="label-xs max-w-[30ch] leading-[1.9] text-paper/45 lg:text-right"
-            data-reveal
-          >
-            Captação acumulada · projetos entregues pela IMOVIX
-          </p>
+          <div className="studio-results-copy" data-reveal><h2>Visão que gera valor.</h2><p>Total captado por nossos clientes em vendas imobiliárias com os produtos IMOVIX.</p><span>Captação acumulada</span></div>
         </div>
 
         {/* Trilho que preenche junto com a contagem. */}
-        <div className="mt-12 h-px w-full overflow-hidden bg-[var(--hair)]" data-reveal>
+        <div className="studio-result-rail" data-reveal>
           <span
             ref={railRef}
             className="block h-px w-full origin-left bg-accent"

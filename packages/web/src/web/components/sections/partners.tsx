@@ -1,179 +1,119 @@
-import type { ReactNode } from "react";
-import { SheetLabel } from "../ui/sheet-label";
+import { useState, type ReactNode } from "react";
+import { Pause, Play } from "lucide-react";
 import { useReveal } from "../../hooks/use-reveal";
 
-/**
- * Esteira de parceiros.
- *
- * ⚠️ CONTEÚDO FICTÍCIO — estas empresas não existem. A seção está aqui para
- * fechar o layout enquanto os parceiros reais não chegam. Troque os nomes e
- * as marcas antes de publicar: exibir parceria inexistente em site comercial
- * é afirmação falsa sobre o negócio.
- *
- * PROPORÇÃO — as duas regras que fazem a fileira parecer alinhada:
- *
- * 1. Toda marca é desenhada dentro da mesma CAIXA ÓPTICA: x e y de 5 a 27 num
- *    viewBox de 32. Sem isso uma torre alta e um grid baixo têm a mesma altura
- *    de caixa mas massas visuais diferentes, e a fileira "dança" — foi o que
- *    aconteceu na primeira versão.
- * 2. O símbolo fica em ~1.7x a altura do wordmark. Acima disso o desenho
- *    domina o nome e o conjunto lê como ícone, não como marca.
- *
- * As marcas são SVG inline: herdam a cor do texto (é o que faz a logo inteira
- * clarear no hover), ficam nítidas em qualquer tela e não pesam no bundle.
- *
- * A animação é CSS puro (`imovi-marquee` em styles.css). Nenhum rAF novo,
- * nenhum listener, nenhum setState: o motor de scrub do hero segue dono do
- * único loop de animação do app.
- */
-
-type Partner = {
-  name: string;
-  mark: ReactNode;
-};
-
-const line = { fill: "none", stroke: "currentColor", strokeWidth: 1.5 } as const;
-const solid = { fill: "currentColor" } as const;
-
+// Concept identities for the preview only; replace with authorized client logos before launch.
+type Partner = { name: string; sector: string; style: string; mark: ReactNode };
 const PARTNERS: Partner[] = [
   {
-    // Três torres, bases alinhadas — verticalidade de incorporadora.
-    name: "Vertta",
+    name: "VÉRTORA",
+    sector: "CONSTRUTORA",
+    style: "vertora",
     mark: (
       <>
-        <rect x="6" y="13" width="5" height="14" {...solid} />
-        <rect x="13.5" y="5" width="5" height="22" {...solid} />
-        <rect x="21.75" y="17.75" width="4.5" height="8.5" {...line} />
+        <path d="M4 9h10l10 30 10-30h10L28 55h-8z" fill="currentColor" />
+        <path d="m24 9 5 15-5 15-5-15z" fill="currentColor" opacity=".4" />
       </>
     ),
   },
   {
-    // Sol sólido nascendo sobre o horizonte.
-    name: "Solaris",
+    name: "MONTEVRA",
+    sector: "ENGENHARIA",
+    style: "montevra",
     mark: (
       <>
-        <path d="M5 27h22" {...line} strokeLinecap="round" />
-        <path d="M9 27a7 7 0 0 1 14 0z" {...solid} />
-        <path d="M16 5v4M7.8 9.3l2.6 2.6M24.2 9.3l-2.6 2.6" {...line} strokeLinecap="round" />
+        <path d="M4 51V13l20 20 20-20v38H34V35L24 45 14 35v16z" fill="currentColor" />
+        <path d="m14 13 10 10 10-10" fill="none" stroke="currentColor" strokeWidth="3" />
       </>
     ),
   },
   {
-    // Losango vazado com núcleo cheio.
-    name: "Noval",
+    name: "Arcavelle",
+    sector: "INCORPORADORA",
+    style: "arcavelle",
     mark: (
       <>
-        <path d="M16 5l11 11-11 11L5 16z" {...line} strokeLinejoin="round" />
-        <path d="M16 11l5 5-5 5-5-5z" {...solid} />
+        <path
+          d="M7 53V28a17 17 0 0 1 34 0v25M15 53V28a9 9 0 0 1 18 0v25"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+        />
+        <path d="M3 53h42" stroke="currentColor" strokeWidth="3" />
       </>
     ),
   },
   {
-    // Telhado sobre bloco, com vão de porta.
-    name: "Habitat Prime",
+    name: "ESTRAVO",
+    sector: "OBRAS & ENGENHARIA",
+    style: "estravo",
+    mark: <path d="m5 14 38-7v10L15 22v6l23-4v9l-23 4v7l28-5v10L5 56z" fill="currentColor" />,
+  },
+  {
+    name: "ALVORA",
+    sector: "CONSTRUÇÕES",
+    style: "alvora",
     mark: (
       <>
-        <path d="M5 16.5L16 6l11 10.5" {...line} strokeLinejoin="round" />
-        <path d="M9 17h14v10H9z" {...solid} />
-        <rect x="14" y="21" width="4" height="6" fill="var(--color-ink)" />
+        <path d="M3 53 24 10l21 43H34L24 31 14 53z" fill="currentColor" />
+        <path d="M20 48h8v5h-8z" fill="currentColor" />
       </>
     ),
   },
   {
-    // Três ondas — orla, litoral.
-    name: "Orla",
+    name: "PILARÉ",
+    sector: "EMPREENDIMENTOS",
+    style: "pilare",
     mark: (
       <>
-        <path d="M5 11c3.7-3 6.9-3 10.5 0s6.8 3 10.5 0" {...line} strokeLinecap="round" />
-        <path d="M5 17c3.7-3 6.9-3 10.5 0s6.8 3 10.5 0" {...line} strokeLinecap="round" />
-        <path d="M5 23c3.7-3 6.9-3 10.5 0s6.8 3 10.5 0" {...line} strokeLinecap="round" />
-      </>
-    ),
-  },
-  {
-    // Grid 2x2 com um quadrante cheio — malha urbana.
-    name: "Terrano",
-    mark: (
-      <>
-        <rect x="5" y="5" width="10" height="10" {...solid} />
-        <rect x="17.75" y="5.75" width="8.5" height="8.5" {...line} />
-        <rect x="5.75" y="17.75" width="8.5" height="8.5" {...line} />
-        <rect x="17.75" y="17.75" width="8.5" height="8.5" {...line} />
-      </>
-    ),
-  },
-  {
-    // Arco sobre vão sólido — átrio.
-    name: "Átrio",
-    mark: (
-      <>
-        <path d="M5 27V16a11 11 0 0 1 22 0v11" {...line} />
-        <path d="M11.5 27v-11a4.5 4.5 0 0 1 9 0v11z" {...solid} />
-      </>
-    ),
-  },
-  {
-    // Núcleo cheio irradiando — luz.
-    name: "Lumina",
-    mark: (
-      <>
-        <circle cx="16" cy="16" r="3.5" {...solid} />
-        <circle cx="16" cy="16" r="7" {...line} />
-        <circle cx="16" cy="16" r="11" {...line} strokeDasharray="2 4.5" />
+        <path
+          d="M7 15h34M7 49h34M12 15v34M24 15v34M36 15v34"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path d="M7 8h34M7 56h34" stroke="currentColor" strokeWidth="2" />
       </>
     ),
   },
 ];
-
-/**
- * Três voltas, não duas: uma volta mede pouco mais que a faixa visível, então
- * com duas cópias sobrava uma fresta no instante do loop. Com três, o trecho
- * que cobre a tela depois do deslocamento é sempre o dobro da lista.
- */
 const LOOPS = [0, 1, 2] as const;
 
-function Logo({ name, mark, hidden }: Partner & { hidden?: boolean }) {
+function Logo({ name, sector, style, mark, hidden }: Partner & { hidden: boolean }) {
   return (
-    <li
-      aria-hidden={hidden || undefined}
-      className="flex shrink-0 items-center gap-3 px-9 text-paper/40 transition-colors duration-500 hover:text-paper/90"
-    >
-      <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0" aria-hidden="true">
+    <li className={`studio-partner-logo studio-partner-${style}`} aria-hidden={hidden || undefined}>
+      <svg viewBox="0 0 48 64" aria-hidden="true">
         {mark}
       </svg>
-      <span className="label-lg whitespace-nowrap text-current">{name}</span>
+      <div>
+        <span className="studio-partner-name">{name}</span>
+        <span className="studio-partner-sector">{sector}</span>
+      </div>
     </li>
   );
 }
 
 export function Partners() {
   const ref = useReveal<HTMLDivElement>(110);
-
+  const [paused, setPaused] = useState(false);
   return (
     <section
       id="parceiros"
-      aria-label="Empresas parceiras"
-      className="relative overflow-x-clip border-b border-[var(--hair)] bg-ink-2"
+      aria-labelledby="partners-title"
+      aria-describedby="partners-note"
+      className="studio-partners"
     >
-      <div ref={ref} className="reveal mx-auto max-w-[1400px] px-6 pt-0 pb-16 sm:px-10 sm:pb-20 lg:px-16">
-        <SheetLabel code="A-02">Parceiros</SheetLabel>
-
-        {/* Película: uma faixa sangrada de ponta a ponta, mais escura que a
-            seção, que dá à esteira uma pista própria. Sem ela as logos
-            flutuam no fundo; com ela viram uma tira de registro, que é o que
-            uma legenda de prancha faz.
-
-            Sangra por um `w-screen` centrado. Atenção: `100vw` INCLUI a barra
-            de rolagem, então a faixa fica ~15px mais larga que a área de
-            conteúdo e criava scroll horizontal na página. Por isso a seção
-            leva `overflow-x-clip` — mesmo recurso já usado em Soluções. */}
-        <div className="relative mt-3">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 border-y border-[var(--hair)] bg-ink/55"
-          />
-          <div className="marquee-mask relative overflow-hidden py-5" data-reveal>
-            <ul className="marquee-track flex w-max items-center">
+      <div ref={ref} className="studio-wrap reveal">
+        <div className="studio-partners-heading">
+          <h2 id="partners-title">Conexões que constroem.</h2>
+        </div>
+        <div className="studio-partners-rail">
+          <div className="marquee-mask">
+            <ul
+              className="marquee-track"
+              aria-label="Conceitos de marcas de construção"
+              style={{ animationPlayState: paused ? "paused" : undefined }}
+            >
               {LOOPS.map((loop) =>
                 PARTNERS.map((partner) => (
                   <Logo key={`${partner.name}-${loop}`} {...partner} hidden={loop > 0} />
@@ -181,6 +121,20 @@ export function Partners() {
               )}
             </ul>
           </div>
+        </div>
+        <div className="studio-partners-bottom">
+          <p id="partners-note" className="studio-partners-note">
+            Marcas fictícias para demonstração visual. Não representam clientes ou parcerias reais.
+          </p>
+          <button
+            className="studio-pause"
+            onClick={() => setPaused(!paused)}
+            aria-label={paused ? "Reproduzir esteira de marcas" : "Pausar esteira de marcas"}
+            aria-pressed={paused}
+          >
+            {paused ? <Play size={13} /> : <Pause size={13} />}
+            <span>{paused ? "Reproduzir" : "Pausar"}</span>
+          </button>
         </div>
       </div>
     </section>

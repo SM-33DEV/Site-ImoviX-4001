@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { peca, type Encaixe } from "../../config/media";
+import { ehTourNavegavel, peca, type Encaixe } from "../../config/media";
+import { Cantoneiras, Hachura } from "./prancha";
+import { Tour3D } from "./tour-3d";
 
 /**
  * Encaixe de mídia — o lugar onde uma peça do portfólio entra numa seção.
@@ -64,6 +66,16 @@ export function MediaSlot({
         </div>
       </div>
     );
+  }
+
+  // --- tour navegável: o percurso assume o encaixe --------------------------
+  //
+  // Um encaixe de tour aceita as duas formas que a palavra tem no mercado. Com
+  // `tour` preenchido, é percurso navegável — o visitante clica de ambiente em
+  // ambiente. Sem ele, é o walkthrough gravado, e cai na regra de vídeo logo
+  // abaixo: poster até o clique.
+  if (ehTourNavegavel(p)) {
+    return <Tour3D tourId={p.tour} proporcao={proporcao} className={className} />;
   }
 
   // --- vídeo: poster até o clique ------------------------------------------
@@ -133,33 +145,6 @@ export function MediaSlot({
 }
 
 /* -------------------------------------------------------------------------- */
-
-/** Hachura diagonal — a marca de "área ainda não desenhada" numa prancha. */
-function Hachura() {
-  return (
-    <span
-      aria-hidden="true"
-      className="absolute inset-0 opacity-[0.55]"
-      style={{
-        backgroundImage:
-          "repeating-linear-gradient(45deg, rgba(221,231,239,0.07) 0 1px, transparent 1px 11px)",
-      }}
-    />
-  );
-}
-
-/** Cantoneiras de prancha, as mesmas do hero e dos projetos. */
-function Cantoneiras() {
-  const base = "pointer-events-none absolute h-3 w-3 border-paper/50";
-  return (
-    <span aria-hidden="true">
-      <span className={`${base} left-2 top-2 border-l border-t`} />
-      <span className={`${base} right-2 top-2 border-r border-t`} />
-      <span className={`${base} bottom-2 left-2 border-b border-l`} />
-      <span className={`${base} bottom-2 right-2 border-b border-r`} />
-    </span>
-  );
-}
 
 const ROTULO: Record<string, string> = {
   video: "Vídeo",
